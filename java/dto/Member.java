@@ -1,8 +1,10 @@
 package dto;
 
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+
 public class Member {
 	private String email;
 	private String name;
@@ -50,5 +52,12 @@ public class Member {
 			return member;
 		}
 		
+	}
+
+	@Override
+	public String toString() {
+		return "Member [email=" + email + ", name=" + name + ", pw=" + pw + ", overDueCount=" + overDueCount
+				+ ", isAdmin=" + isAdmin + ", beingRented=" + beingRented + "]";
 	}	
+	
 }
