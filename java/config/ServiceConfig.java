@@ -3,13 +3,12 @@ package config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import controllers.MemberController;
-
+import services.MemberService;
 
 @Configuration
-public class ControllerConfig {
+public class ServiceConfig {
 	@Bean
-	public MemberController memberController() {
-		return new MemberController();
+	public MemberService memberService() {
+		return new MemberService();
 	}
 }

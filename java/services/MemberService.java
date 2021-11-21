@@ -1,9 +1,21 @@
 package services;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import dao.MemberDao;
+import dto.Member;
+
 public class MemberService {
 	
-	public boolean registMember() {
-		return true;
+	@Autowired
+	private MemberDao memberDao;
+	
+	public Member registMember(Member member) {
+		if(memberDao.insertMember(member)) {
+			return member;
+		}else {
+			return new Member.Builder(null, null, null).build();
+		}
 	}
 	public Object getMyInfo() {
 		return null;
