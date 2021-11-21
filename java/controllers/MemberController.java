@@ -17,9 +17,6 @@ public class MemberController {
 	
 	@PostMapping("/regist")
 	private Member registMember(@RequestBody Member member) {
-		System.out.println("*******************************");
-		System.out.println(member.toString());
-		System.out.println("*******************************");
 		return memberService.registMember(member);
 	}
 }
