@@ -25,12 +25,12 @@ public class MemberDaoForMariaDB implements MemberDao {
 		int result = jdbcTemplate.update((Connection con) -> {
 			String sql = "insert into Member values(?,?,?,?,?,?)";
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(0, member.getEmail());
-			pstmt.setString(1, member.getName());
-			pstmt.setString(2, member.getPw());
-			pstmt.setBoolean(3, member.isAdmin());
-			pstmt.setInt(4, member.getOverDueCount());
-			pstmt.setBoolean(5, member.isBeingRented());
+			pstmt.setString(1, member.getEmail());
+			pstmt.setString(2, member.getName());
+			pstmt.setString(3, member.getPw());
+			pstmt.setBoolean(4, member.isAdmin());
+			pstmt.setInt(5, member.getOverDueCount());
+			pstmt.setBoolean(6, member.isBeingRented());
 			return pstmt;
 			});
 		return result == 1 ? true : false;
@@ -39,7 +39,7 @@ public class MemberDaoForMariaDB implements MemberDao {
 	@Override
 	public Member selectMember(String email) {
 		String sql = "select * from member where email = ?";
-		Member result = jdbcTemplate.query(sql, new MemberRowMapper<Member>()).get(0);
+		Member result = jdbcTemplate.query(sql, new MemberRowMapper<Member>(),email).get(0);
 		return result;
 	}
 
@@ -50,12 +50,12 @@ public class MemberDaoForMariaDB implements MemberDao {
 				+ "where email = ?";
 		int result = jdbcTemplate.update((Connection con) -> {
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(5, member.getEmail());
-			pstmt.setString(0, member.getName());
-			pstmt.setString(1, member.getPw());
-			pstmt.setBoolean(2, member.isAdmin());
-			pstmt.setInt(3, member.getOverDueCount());
-			pstmt.setBoolean(4, member.isBeingRented());
+			pstmt.setString(6, member.getEmail());
+			pstmt.setString(1, member.getName());
+			pstmt.setString(2, member.getPw());
+			pstmt.setBoolean(3, member.isAdmin());
+			pstmt.setInt(4, member.getOverDueCount());
+			pstmt.setBoolean(5, member.isBeingRented());
 			return pstmt;
 		});
 		return result == 1 ? true : false;
