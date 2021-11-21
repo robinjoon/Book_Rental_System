@@ -22,18 +22,22 @@ public class MemberDaoForMariaDB implements MemberDao {
 	}
 	@Override
 	public boolean insertMember(Member member) {
-		int result = jdbcTemplate.update((Connection con) -> {
-			String sql = "insert into Member values(?,?,?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, member.getEmail());
-			pstmt.setString(2, member.getName());
-			pstmt.setString(3, member.getPw());
-			pstmt.setBoolean(4, member.isAdmin());
-			pstmt.setInt(5, member.getOverDueCount());
-			pstmt.setBoolean(6, member.isBeingRented());
-			return pstmt;
-			});
-		return result == 1 ? true : false;
+		try {
+			int result = jdbcTemplate.update((Connection con) -> {
+				String sql = "insert into Member values(?,?,?,?,?,?)";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, member.getEmail());
+				pstmt.setString(2, member.getName());
+				pstmt.setString(3, member.getPw());
+				pstmt.setBoolean(4, member.isAdmin());
+				pstmt.setInt(5, member.getOverDueCount());
+				pstmt.setBoolean(6, member.isBeingRented());
+				return pstmt;
+				});
+			return result == 1 ? true : false;
+		}catch(Exception e) {
+			return false;
+		}
 	}
 
 	@Override
