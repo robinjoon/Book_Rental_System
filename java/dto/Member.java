@@ -1,22 +1,27 @@
 package dto;
 
+import java.util.List;
+
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 
 public class Member {
-	private String email;
+	private String id;
 	private String name;
 	private String pw;
 	private int overDueCount;
 	private boolean isAdmin;
 	private boolean beingRented;
+	@Setter
+	private List<Book> rentalList;
 	
 	private Member() {}
 	
 	public static class Builder{
-		private String email;
+		private String id;
 		private String name;
 		private String pw;
 		private int overDueCount = 0;
@@ -24,7 +29,7 @@ public class Member {
 		private boolean beingRented = false;
 		
 		public Builder(String email, String name, String pw) {
-			this.email = email;
+			this.id = email;
 			this.name = name;
 			this.pw = pw;
 		}
@@ -44,7 +49,7 @@ public class Member {
 		public Member build() {
 			Member member = new Member();
 			member.beingRented = beingRented;
-			member.email = email;
+			member.id = id;
 			member.isAdmin = isAdmin;
 			member.name = name;
 			member.overDueCount = overDueCount;
@@ -53,10 +58,11 @@ public class Member {
 		}
 		
 	}
+	
 
 	@Override
 	public String toString() {
-		return "Member [email=" + email + ", name=" + name + ", pw=" + pw + ", overDueCount=" + overDueCount
+		return "Member [email=" + id + ", name=" + name + ", pw=" + pw + ", overDueCount=" + overDueCount
 				+ ", isAdmin=" + isAdmin + ", beingRented=" + beingRented + "]";
 	}	
 	
