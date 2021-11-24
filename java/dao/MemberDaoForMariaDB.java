@@ -26,7 +26,7 @@ public class MemberDaoForMariaDB implements MemberDao {
 			int result = jdbcTemplate.update((Connection con) -> {
 				String sql = "insert into Member values(?,?,?,?,?,?)";
 				PreparedStatement pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, member.getEmail());
+				pstmt.setString(1, member.getId());
 				pstmt.setString(2, member.getName());
 				pstmt.setString(3, member.getPw());
 				pstmt.setBoolean(4, member.isAdmin());
@@ -43,8 +43,28 @@ public class MemberDaoForMariaDB implements MemberDao {
 	@Override
 	public Member selectMember(String email) {
 		String sql = "select * from member where email = ?";
-		Member result = jdbcTemplate.query(sql, new MemberRowMapper<Member>(),email).get(0);
-		return result;
+		Member member;
+		try{
+			member = jdbcTemplate.query(sql, new MemberRowMapper<Member>(),email).get(0);
+		}catch(Exception e) {
+			return null;
+		}
+		sql = "select * from rental_list where member_email = ? and returned = FALSE";
+		List<Book> books = jdbcTemplate.query(sql, (ResultSet rs, int rowNum) ->{
+			Book.Builder builder = new Book.Builder(
+					rs.getString("category"),
+					rs.getString("title"), 
+					rs.getString("writer"), 
+					rs.getString("publisher"), 
+					rs.getString("image"));
+			builder.setBookId(rs.getInt("book_id"))
+			.setIsbn(rs.getString("isbn"))
+			.setRented(true)
+			.setTranslator(rs.getString("translator"));
+			return builder.build(); 
+		}, email);
+		member.setRentalList(books);
+		return member;
 	}
 
 	@Override
@@ -54,7 +74,7 @@ public class MemberDaoForMariaDB implements MemberDao {
 				+ "where email = ?";
 		int result = jdbcTemplate.update((Connection con) -> {
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(6, member.getEmail());
+			pstmt.setString(6, member.getId());
 			pstmt.setString(1, member.getName());
 			pstmt.setString(2, member.getPw());
 			pstmt.setBoolean(3, member.isAdmin());

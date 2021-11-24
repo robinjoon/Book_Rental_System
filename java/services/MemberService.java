@@ -31,7 +31,7 @@ public class MemberService {
 	}
 	public ResponseEntity<Member> updateMyInfo(Member member) {
 		if(memberDao.updateMember(member)) {
-			Member getMember = memberDao.selectMember(member.getEmail());
+			Member getMember = memberDao.selectMember(member.getId());
 			if(getMember == null)
 				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();  // required fix http status code
 			else
