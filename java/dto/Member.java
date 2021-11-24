@@ -4,7 +4,6 @@ import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 
@@ -34,16 +33,19 @@ public class Member {
 			this.pw = pw;
 		}
 
-		public void setOverDueCount(int overDueCount) {
+		public Builder setOverDueCount(int overDueCount) {
 			this.overDueCount = overDueCount;
+			return this;
 		}
 
-		public void setAdmin(boolean isAdmin) {
+		public Builder setAdmin(boolean isAdmin) {
 			this.isAdmin = isAdmin;
+			return this;
 		}
 
-		public void setBeingRented(boolean beingRented) {
+		public Builder setBeingRented(boolean beingRented) {
 			this.beingRented = beingRented;
+			return this;
 		}
 		
 		public Member build() {

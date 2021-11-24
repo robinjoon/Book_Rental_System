@@ -28,14 +28,17 @@ public class Rental {
 		private Timestamp dueTime;
 		private boolean returned;
 		
-		public void setRentalId(int rentalId) {
+		public Builder setRentalId(int rentalId) {
 			this.rentalId = rentalId;
+			return this;
 		}
-		public void setBookId(int bookId) {
+		public Builder setBookId(int bookId) {
 			this.bookId = bookId;
+			return this;
 		}
-		public void setReturned(boolean returned) {
+		public Builder setReturned(boolean returned) {
 			this.returned = returned;
+			return this;
 		}
 		
 		public Rental build() {

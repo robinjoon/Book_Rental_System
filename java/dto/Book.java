@@ -35,20 +35,24 @@ public class Book {
 			this.image = image;
 		}
 
-		public void setBookId(int bookId) {
+		public Builder setBookId(int bookId) {
 			this.bookId = bookId;
+			return this;
 		}
 
-		public void setTranslator(String translator) {
+		public Builder setTranslator(String translator) {
 			this.translator = translator;
+			return this;
 		}
 
-		public void setIsbn(String isbn) {
+		public Builder setIsbn(String isbn) {
 			this.isbn = isbn;
+			return this;
 		}
 
-		public void setRented(boolean rented) {
+		public Builder setRented(boolean rented) {
 			this.rented = rented;
+			return this;
 		}
 		
 		public Book build() {
