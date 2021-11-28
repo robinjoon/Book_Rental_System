@@ -6,8 +6,8 @@ import java.util.*;
 public interface MemberDao {
 	
 	boolean insertMember(Member member);
-	Member selectMember(String email);
+	Member selectMember(String userID);
 	boolean updateMember(Member member);
 	List<Member> selectMembers();
-	boolean deleteMember(String email);
+	boolean deleteMember(String userID);
 }
