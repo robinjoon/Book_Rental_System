@@ -1,20 +1,30 @@
 package services;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import dao.BookDao;
+import dto.Book;
+
 public class BookService {
 	
-	public boolean registBook() {
-		return true;
+	@Autowired
+	private BookDao bookDao;
+	
+	public boolean registBook(Book book) {
+		return bookDao.insertBook(book);
 	}
-	public boolean deleteBook() {
-		return true;
+	public boolean deleteBook(int bookId) {
+		return bookDao.deleteBook(bookId);
 	}
-	public Object getBookList() {
-		return null;
+	public List<Book> getBookList() {
+		return bookDao.selectBooks();
 	}
-	public Object getBookList(Object category) {
-		return null;
+	public List<Book> getBookList(String category) {
+		return bookDao.selectBooks(category);
 	}
-	public Object getBook(Object bookId) {
-		return null;
+	public Book getBook(int bookId) {
+		return bookDao.selectBook(bookId);
 	}
 }
