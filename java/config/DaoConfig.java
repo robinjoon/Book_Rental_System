@@ -8,7 +8,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import dao.MemberDao;
-import dao.MemberDaoForMariaDB;
+import dao.MemberDaoWithJdbcTemplate;
 
 @Configuration
 @EnableTransactionManagement
@@ -35,6 +35,6 @@ public class DaoConfig {
 	}
 	@Bean
 	public MemberDao memberDao() {
-		return new MemberDaoForMariaDB(dataSource());
+		return new MemberDaoWithJdbcTemplate(dataSource());
 	}
 }

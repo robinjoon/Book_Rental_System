@@ -13,11 +13,11 @@ import org.springframework.jdbc.core.RowMapper;
 
 import dto.Book;
 
-public class BookDaoForMariaDB implements BookDao {
+public class BookDaoWithJdbcTemplate implements BookDao {
 
 	private JdbcTemplate jdbcTemplate;
 	
-	public BookDaoForMariaDB(DataSource dataSource) {
+	public BookDaoWithJdbcTemplate(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	

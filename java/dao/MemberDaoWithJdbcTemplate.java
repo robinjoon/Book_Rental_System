@@ -13,11 +13,11 @@ import org.springframework.jdbc.core.RowMapper;
 
 import dto.*;
 
-public class MemberDaoForMariaDB implements MemberDao {
+public class MemberDaoWithJdbcTemplate implements MemberDao {
 	
 	private JdbcTemplate jdbcTemplate;
 	
-	public MemberDaoForMariaDB(DataSource dataSource) {
+	public MemberDaoWithJdbcTemplate(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	@Override
