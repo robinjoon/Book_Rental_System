@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public class Rental {
 	private int rentalId;
-	private String email;
+	private String userId;
 	private int bookId;
 	private Timestamp startTime;
 	private Timestamp dueTime;
@@ -20,7 +20,7 @@ public class Rental {
 		
 		private int rentalId;
 		@NonNull
-		private String email;
+		private String userId;
 		private int bookId;
 		@NonNull
 		private Timestamp startTime;
@@ -45,7 +45,7 @@ public class Rental {
 			Rental rental = new Rental();
 			rental.bookId = bookId;
 			rental.dueTime = dueTime;
-			rental.email = email;
+			rental.userId = userId;
 			rental.rentalId = rentalId;
 			rental.returned = returned;
 			rental.startTime = startTime;
