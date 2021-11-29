@@ -4,11 +4,11 @@ import dto.*;
 import java.util.*;
 public interface RentalDao {
 	
-	boolean insertRental(String userID, Book book);
-	boolean updateRental(String userID, Book book); // 대출기간 수정
-	boolean patchRental(String userID, Book book); // 반납 처리
+	boolean insertRental(Rental rental);
+	boolean updateRental(Rental rental); // 대출기간 수정
+	boolean patchRental(Rental rental); // 반납 처리
 	List<Rental> selectRentals(int bookId);
 	List<Rental> selectRentals(String userID);
-	List<Rental> selectRental(int rentalId);
+	Rental selectRental(int rentalId);
 	
 }
