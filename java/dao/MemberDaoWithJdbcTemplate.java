@@ -49,7 +49,7 @@ public class MemberDaoWithJdbcTemplate implements MemberDao {
 		}catch(Exception e) {
 			return null;
 		}
-		sql = "select * from rental_list where member_email = ? and returned = FALSE";
+		sql = "select * from book where book_id = (select * from rental_list where member_email = ? and returned = FALSE)";
 		List<Book> books = jdbcTemplate.query(sql, (ResultSet rs, int rowNum) ->{
 			Book.Builder builder = new Book.Builder(
 					rs.getString("category"),
@@ -59,7 +59,6 @@ public class MemberDaoWithJdbcTemplate implements MemberDao {
 					rs.getString("image"));
 			builder.setBookId(rs.getInt("book_id"))
 			.setIsbn(rs.getString("isbn"))
-			.setRented(true)
 			.setTranslator(rs.getString("translator"));
 			return builder.build(); 
 		}, email);

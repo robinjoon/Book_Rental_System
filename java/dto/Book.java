@@ -12,7 +12,6 @@ public class Book {
 	private String publisher;
 	private String image;
 	private String isbn;
-	private boolean rented;
 	
 	private Book() {}
 	
@@ -25,7 +24,6 @@ public class Book {
 		private String publisher;
 		private String image;
 		private String isbn;
-		private boolean rented;
 		
 		public Builder(String category, String title, String writer, String publisher, String image) {
 			this.category = category;
@@ -50,10 +48,6 @@ public class Book {
 			return this;
 		}
 
-		public Builder setRented(boolean rented) {
-			this.rented = rented;
-			return this;
-		}
 		
 		public Book build() {
 			Book book = new Book();
@@ -62,7 +56,6 @@ public class Book {
 			book.image = image;
 			book.isbn = isbn;
 			book.publisher = publisher;
-			book.rented = rented;
 			book.title = title;
 			book.translator = translator;
 			book.writer = writer;

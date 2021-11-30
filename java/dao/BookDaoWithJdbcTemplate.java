@@ -80,7 +80,6 @@ public class BookDaoWithJdbcTemplate implements BookDao {
 					rs.getString("image"));
 			builder.setBookId(rs.getInt("book_id"))
 			.setIsbn(rs.getString("isbn"))
-			.setRented(true)
 			.setTranslator(rs.getString("translator"));
 			return (T)builder.build(); 
 		}
