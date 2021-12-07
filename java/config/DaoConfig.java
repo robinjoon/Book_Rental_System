@@ -7,8 +7,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import dao.MemberDao;
-import dao.MemberDaoWithJdbcTemplate;
+import dao.*;
 
 @Configuration
 @EnableTransactionManagement
@@ -36,5 +35,13 @@ public class DaoConfig {
 	@Bean
 	public MemberDao memberDao() {
 		return new MemberDaoWithJdbcTemplate(dataSource());
+	}
+	@Bean
+	public BookDao bookDao() {
+		return new BookDaoWithJdbcTemplate(dataSource());
+	}
+	@Bean
+	public RentalDao rentalDao() {
+		return new RentalDaoWithJdbcTemplate(dataSource());
 	}
 }
