@@ -12,7 +12,7 @@ public class BookService {
 	@Autowired
 	private BookDao bookDao;
 	
-	public boolean registBook(Book book) {
+	public int registBook(Book book) {
 		return bookDao.insertBook(book);
 	}
 	public boolean deleteBook(int bookId) {
