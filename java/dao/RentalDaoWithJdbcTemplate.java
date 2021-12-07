@@ -34,8 +34,8 @@ public class RentalDaoWithJdbcTemplate implements RentalDao {
 
 	@Override
 	public boolean updateRental(Rental rental) {
-		String sql = "update rental_list set due_time = ?";
-		int result = jdbcTemplate.update(sql, rental.getDueTime());
+		String sql = "update rental_list set due_time = ? where rental_id = ?";
+		int result = jdbcTemplate.update(sql, rental.getDueTime(),rental.getRentalId());
 		if(result == 1) 
 			return true;
 		else
@@ -44,8 +44,8 @@ public class RentalDaoWithJdbcTemplate implements RentalDao {
 
 	@Override
 	public boolean patchRental(Rental rental) {
-		String sql = "update rental_list set returned = ?";
-		int result = jdbcTemplate.update(sql, rental.isReturned());
+		String sql = "update rental_list set returned = ? where rental_id = ?";
+		int result = jdbcTemplate.update(sql, rental.isReturned(),rental.getRentalId());
 		if(result == 1) 
 			return true;
 		else
