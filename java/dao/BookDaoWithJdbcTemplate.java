@@ -10,6 +10,8 @@ import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 import dto.Book;
 
@@ -22,9 +24,10 @@ public class BookDaoWithJdbcTemplate implements BookDao {
 	}
 	
 	@Override
-	public boolean insertBook(Book book) {
+	public int insertBook(Book book) {
+		KeyHolder keyHolder = new GeneratedKeyHolder();
 		try {
-			int result = jdbcTemplate.update((Connection con) -> {
+			jdbcTemplate.update((Connection con) -> {
 				String sql = "insert into book(category,title,writer,translator,publisher,image,isbn) values(?,?,?,?,?,?,?)";
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, book.getCategory());
@@ -35,10 +38,11 @@ public class BookDaoWithJdbcTemplate implements BookDao {
 				pstmt.setString(6, book.getImage());
 				pstmt.setString(7, book.getIsbn());
 				return pstmt;
-				});
-			return result == 1 ? true : false;
+				},keyHolder);
+			int bookId = keyHolder.getKey().intValue();
+			return bookId;
 		}catch(Exception e) {
-			return false;
+			return -1;
 		}
 	}
 
