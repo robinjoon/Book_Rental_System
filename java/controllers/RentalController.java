@@ -29,7 +29,7 @@ public class RentalController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	@PostMapping("/{rentalId}/return")
+	@PostMapping("/{rentalId}")
 	private ResponseEntity<?> returnBook(@PathVariable("{rentalId") int rentalId){
 		Rental rental = new Rental.Builder(null, null, null)
 				.setRentalId(rentalId)
@@ -41,7 +41,7 @@ public class RentalController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	@PutMapping("")
+	@PutMapping("/{rentalId}")
 	private ResponseEntity<?> updateDue(@RequestBody Rental rental){
 		if(rentalService.updateRentalInfo(rental)) {
 			return ResponseEntity.ok().build();
@@ -49,7 +49,7 @@ public class RentalController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	@GetMapping("/{userId}/list")
+	@GetMapping("/{userId}")
 	private ResponseEntity<List<Rental>> getRentalList(@PathVariable("{userId}")String userId){
 		try {
 			int bookId = Integer.parseInt(userId);
@@ -71,8 +71,8 @@ public class RentalController {
 			return ResponseEntity.ok(result);
 		}
 	}
-	@GetMapping("/{userId}")
-	private ResponseEntity<Rental> getRental(@PathVariable("{userId}")int rentalId){
+	@GetMapping("/{rentalId}")
+	private ResponseEntity<Rental> getRental(@PathVariable("{rentalId}")int rentalId){
 		Rental result = rentalService.getRental(rentalId);
 		if(result == null) {
 			return ResponseEntity.badRequest().build();

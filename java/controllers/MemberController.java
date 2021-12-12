@@ -54,7 +54,7 @@ public class MemberController {
 			return ResponseEntity.ok(member);
 		}
 	}
-	@PutMapping("/myIfo")
+	@PutMapping("/myInfo")
 	private ResponseEntity<?> updateMyInfo(Member member){
 		String userId = ""; // get userId from JWT
 		if(userId.equals(member.getId())) {
