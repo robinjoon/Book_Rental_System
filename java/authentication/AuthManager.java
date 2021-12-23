@@ -1,12 +1,22 @@
 package authentication;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import services.MemberService;
+
 public class AuthManager {
 
-	public Object createJwt(Object info) {
+	@Autowired
+	private MemberService memberService;
+	
+	public String createJwt(String id, String pw) {
+		if(memberService.login(id, pw)) {
+			// create JWT
+		}
 		return null;
 	}
-	public Object verifyJwt(Object jwt) {
-		return null;
+	public boolean verifyJwt(String jwt) {
+		return false;
 	}
 	public Object updateJwt() {
 		return null;

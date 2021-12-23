@@ -98,6 +98,18 @@ public class MemberDaoWithJdbcTemplate implements MemberDao {
 		return result == 1 ? true : false;
 	}
 	
+	@Override
+	public boolean loginMember(String userID, String pw) {
+		String sql = "select * from member where email = ? and pw = ?";
+		Member result = jdbcTemplate.query(sql, new MemberRowMapper<Member>()).get(0);
+		if(result == null || !result.getId().contentEquals(userID)) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+
+
 	private class MemberRowMapper<T extends Member> implements RowMapper<T>{
 		@SuppressWarnings("unchecked")
 		@Override

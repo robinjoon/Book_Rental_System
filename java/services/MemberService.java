@@ -30,4 +30,8 @@ public class MemberService {
 	public Member getMember(String userId) {
 		return memberDao.selectMember(userId);
 	}
+	
+	public boolean login(String userId, String pw) {
+		return memberDao.loginMember(userId, pw);
+	}
 }
