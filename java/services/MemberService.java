@@ -31,7 +31,7 @@ public class MemberService {
 		return memberDao.selectMember(userId);
 	}
 	
-	public boolean login(String userId, String pw) {
+	public Member login(String userId, String pw) {
 		return memberDao.loginMember(userId, pw);
 	}
 }

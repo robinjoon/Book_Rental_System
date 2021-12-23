@@ -10,5 +10,5 @@ public interface MemberDao {
 	boolean updateMember(Member member);
 	List<Member> selectMembers();
 	boolean deleteMember(String userID);
-	boolean loginMember(String userID, String pw);
+	Member loginMember(String userID, String pw);
 }
